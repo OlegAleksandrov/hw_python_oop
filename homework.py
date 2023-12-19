@@ -26,6 +26,7 @@ class Training:
     """Базовый класс тренировки."""
     LEN_STEP = 0.65
     M_IN_KM = 1000
+    HOURS_IN_MIN = 60
 
     def __init__(self,
                  action: int,
@@ -77,7 +78,7 @@ class Running(Training):
                     * self.get_mean_speed()
                     + self.CALORIES_MEAN_SPEED_SHIFT)
                     * self.weight / self.M_IN_KM
-                    * self.duration)
+                    * self.duration * self.HOURS_IN_MIN)
         return calories
 
 
@@ -101,7 +102,7 @@ class SportsWalking(Training):
         calories = ((self.WEIGHT_COEFF * self.weight
                     + (self.SPEED_MIS**2 / self.height)
                     * self.WEIGHT_COEFF_SECOND
-                    * self.weight) * self.duration)
+                    * self.weight) * self.duration * self.HOURS_IN_MIN)
         return calories
 
 
