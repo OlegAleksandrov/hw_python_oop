@@ -87,6 +87,7 @@ class SportsWalking(Training):
     WEIGHT_COEFF = 0.035
     WEIGHT_COEFF_SECOND = 0.029
     SPEED_MIS = 0.278
+    SM_IN_METERS = 100
     # mis = meter in seconds
 
     def __init__(self,
@@ -100,7 +101,7 @@ class SportsWalking(Training):
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         calories = ((self.WEIGHT_COEFF * self.weight
-                    + (self.SPEED_MIS**2 / self.height)
+                    + (self.SPEED_MIS**2 / self.height * self.SM_IN_METERS)
                     * self.WEIGHT_COEFF_SECOND
                     * self.weight) * self.duration * self.HOURS_IN_MIN)
         return calories
