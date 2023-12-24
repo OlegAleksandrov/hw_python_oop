@@ -141,9 +141,9 @@ def read_package(workout_type: str, data: list) -> Training:
         'RUN': Running,
         'WLK': SportsWalking,
     }
-    if workout_type not in workout_dict: 
-        raise ValueError("Несоответствующее значение") 
-    return workout_dict[workout_type](*data) 
+    if workout_type not in workout_dict:
+        raise ValueError("Несоответствующее значение")
+    return workout_dict[workout_type](*data)
 
 
 def main(training: Training) -> None:
