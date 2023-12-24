@@ -63,15 +63,8 @@ class Training:
 
 class Running(Training):
     """Тренировка: бег."""
-    CALORIES_MEAN_SPEED_MULTIPLIER = 18
-    CALORIES_MEAN_SPEED_SHIFT = 1.79
-
-    def __init__(self,
-                 action: int,
-                 duration: float,
-                 weight: float,
-                 ) -> None:
-        super().__init__(action, duration, weight)
+    CALORIES_MEAN_SPEED_MULTIPLIER: int = 18
+    CALORIES_MEAN_SPEED_SHIFT: float = 1.79
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
@@ -148,11 +141,9 @@ def read_package(workout_type: str, data: list) -> Training:
         'RUN': Running,
         'WLK': SportsWalking,
     }
-    if workout_type in workout_dict:
-        training = workout_dict[workout_type](*data)
-    if workout_type not in workout_dict:
-        raise ValueError("Несоответствующее значение")
-    return training
+    if workout_type not in workout_dict: 
+        raise ValueError("Несоответствующее значение") 
+    return workout_dict[workout_type](*data) 
 
 
 def main(training: Training) -> None:
